@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 
 const PayslipsList = ({navigation}) => {
   const [payslips] = useState<Payslip[]>([
@@ -38,21 +38,45 @@ const PayslipsList = ({navigation}) => {
     navigation.navigate('Profile', payslip);
   };
   return (
-    <View>
+    // <View style={{flex: 1, padding: 16}}>
+    //   <FlatList
+    //     data={payslips}
+    //     renderItem={({item: payslip}) => (
+    //       <TouchableOpacity
+    //         style={{
+    //           borderBottomWidth: 1,
+    //           borderBottomColor: '#ddd',
+    //           paddingVertical: 12,
+    //         }}
+    //         onPress={() => handlePayslipClick(payslip)}>
+    //         <Text>
+    //           {`${payslip.fromDate.toLocaleDateString()} - ${payslip.toDate.toLocaleDateString()}`}
+    //         </Text>
+    //       </TouchableOpacity>
+    //     )}
+    //     keyExtractor={item => item.id.toString()}
+    //   />
+    // </View>
+    <View style={{flex: 1, padding: 16, backgroundColor: '#f5f5f5'}}>
       <FlatList
         data={payslips}
         renderItem={({item: payslip}) => (
-          <TouchableOpacity onPress={() => handlePayslipClick(payslip)}>
-            <Text>{`${payslip.fromDate.toLocaleDateString()} - ${payslip.toDate.toLocaleDateString()}`}</Text>
+          <TouchableOpacity
+            style={{
+              borderBottomWidth: 1,
+              borderBottomColor: '#ddd',
+              paddingVertical: 12,
+              backgroundColor: '#fff',
+              borderRadius: 8,
+              marginBottom: 8,
+            }}
+            onPress={() => handlePayslipClick(payslip)}>
+            <Text style={{fontSize: 16, color: '#333'}}>
+              {`${payslip.fromDate.toLocaleDateString()} - ${payslip.toDate.toLocaleDateString()}`}
+            </Text>
           </TouchableOpacity>
         )}
-        keyExtractor={item => item.id}
-      />
-      <Button
-        title="Go to Jane's profile"
-        onPress={() =>
-          navigation.navigate('Profile', {name: 'Jane', place: 'lahore'})
-        }
+        keyExtractor={item => item.id.toString()}
       />
     </View>
   );

@@ -1,6 +1,14 @@
 import {Directory, Filesystem} from '@capacitor/filesystem';
 import React, {useCallback} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Image, Text, View} from 'react-native';
+
+const formatToMMMDDYYYY = date => {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
 
 const PayslipDetails = ({navigation, route}) => {
   const downloadPayslip = useCallback(async () => {
@@ -16,16 +24,64 @@ const PayslipDetails = ({navigation, route}) => {
     console.log('Download result:', result);
   }, []);
   return (
-    <View>
-      <Text>
-        Period: {route.params.fromDate.toLocaleDateString()} -{' '}
-        {route.params.toDate.toLocaleDateString()}
-        {route.params.file}
+    <View
+      style={{
+        flex: 1,
+        padding: 16,
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
+      }}>
+      <Image
+        source={require('./assets/profile.png')}
+        style={{width: 100, height: 100, borderRadius: 50, marginBottom: 16}}
+      />
+      <Text
+        style={{
+          fontSize: 18,
+          marginBottom: 16,
+          textAlign: 'center',
+          color: '#333',
+          fontWeight: 'bold',
+          paddingHorizontal: 20,
+          paddingVertical: 15,
+          borderRadius: 10,
+          backgroundColor: '#fff',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+        Period: {formatToMMMDDYYYY(route.params.fromDate)} -{' '}
+        {formatToMMMDDYYYY(route.params.toDate)}
       </Text>
-      <Button title="Download Payslip" onPress={downloadPayslip} />
+      <Text
+        style={{
+          fontSize: 18,
+          marginBottom: 16,
+          textAlign: 'center',
+          color: '#333',
+          fontWeight: 'bold',
+          paddingHorizontal: 20,
+          paddingVertical: 15,
+          borderRadius: 10,
+          backgroundColor: '#fff',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+        Filename: {route.params.file}
+      </Text>
+
+      <Button
+        title="Download Payslip"
+        onPress={downloadPayslip}
+        color="#3498db"
+      />
     </View>
   );
 };
 
 export default PayslipDetails;
-

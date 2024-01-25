@@ -9,14 +9,38 @@ const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen
+    //       name="Home"
+    //       component={PayslipsList}
+    //       options={{title: 'Payslips List'}}
+    //     />
+    //     <Stack.Screen name="Profile" component={PayslipDetails} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#3498db',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
         <Stack.Screen
           name="Home"
           component={PayslipsList}
-          options={{title: 'Welcome'}}
+          options={{title: 'Payslips List'}}
         />
-        <Stack.Screen name="Profile" component={PayslipDetails} />
+        <Stack.Screen
+          name="Profile"
+          component={PayslipDetails}
+          options={{title: 'Payslip Details'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
