@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 
 const PayslipsList = ({navigation}) => {
+  /** Mock data using states */
   const [payslips] = useState<Payslip[]>([
     {
       id: '1',
@@ -34,29 +35,11 @@ const PayslipsList = ({navigation}) => {
       file: 'payslip5.pdf',
     },
   ]);
+  /** Navigation from list view to detials page */
   const handlePayslipClick = (payslip: any) => {
     navigation.navigate('Profile', payslip);
   };
   return (
-    // <View style={{flex: 1, padding: 16}}>
-    //   <FlatList
-    //     data={payslips}
-    //     renderItem={({item: payslip}) => (
-    //       <TouchableOpacity
-    //         style={{
-    //           borderBottomWidth: 1,
-    //           borderBottomColor: '#ddd',
-    //           paddingVertical: 12,
-    //         }}
-    //         onPress={() => handlePayslipClick(payslip)}>
-    //         <Text>
-    //           {`${payslip.fromDate.toLocaleDateString()} - ${payslip.toDate.toLocaleDateString()}`}
-    //         </Text>
-    //       </TouchableOpacity>
-    //     )}
-    //     keyExtractor={item => item.id.toString()}
-    //   />
-    // </View>
     <View style={{flex: 1, padding: 16, backgroundColor: '#f5f5f5'}}>
       <FlatList
         data={payslips}

@@ -2,7 +2,8 @@ import {Directory, Filesystem} from '@capacitor/filesystem';
 import React, {useCallback} from 'react';
 import {Button, Image, Text, View} from 'react-native';
 
-const formatToMMMDDYYYY = date => {
+/** Function to format date to MMM DD, YYYY */
+const formatToMMMDDYYYY = (date: string | number | Date) => {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
@@ -10,7 +11,10 @@ const formatToMMMDDYYYY = date => {
   });
 };
 
-const PayslipDetails = ({navigation, route}) => {
+const PayslipDetails = ({route}) => {
+  /** Code for download payslip
+   * Code needs some final touches
+   */
   const downloadPayslip = useCallback(async () => {
     // const path = route.params.file;
     const url = 'https://images.app.goo.gl/YakPNGDP7Mp6JJGz7';
@@ -22,7 +26,7 @@ const PayslipDetails = ({navigation, route}) => {
     };
     const result = await Filesystem.downloadFile(options);
     console.log('Download result:', result);
-  }, []);
+  }, [route.params.file]);
   return (
     <View
       style={{
