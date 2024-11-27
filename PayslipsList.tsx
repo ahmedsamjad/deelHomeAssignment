@@ -34,12 +34,6 @@ const PayslipsList = ({navigation}) => {
       toDate: new Date('2023-05-31'),
       file: 'payslip5.pdf',
     },
-    {
-      id: '6',
-      fromDate: new Date('2023-05-01'),
-      toDate: new Date('2023-05-31'),
-      file: 'payslip6.pdf',
-    },
   ]);
   /** Navigation from list view to detials page */
   const handlePayslipClick = (payslip: any) => {
