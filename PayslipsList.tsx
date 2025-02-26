@@ -3,6 +3,7 @@ import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 
 const PayslipsList = ({navigation}) => {
   /** Mock data using states */
+  var asset = [];
   const [payslips] = useState<Payslip[]>([
     {
       id: '1',
